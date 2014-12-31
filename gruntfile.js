@@ -9,12 +9,19 @@ module.exports = function(grunt) {
         }
       },
       js: {
-        files: ['public/js/**', 'models/**/*.js', 'schemas/**/*.js'],
-        //tasks: ['jshint'],
+        files: ['routes/*.js', 'app.js', 'public/javascripts/*.js'],
+        tasks: ['jshint'],
         options: {
           livereload: true
         }
       }
+    },
+
+    jshint: {
+      options: {
+        jshintrc: '.jshintrc'
+      },
+      all: ['routes/*.js', 'app.js', 'public/javascripts/*.js']
     },
 
     nodemon: {
@@ -23,7 +30,7 @@ module.exports = function(grunt) {
         options: {
           file: './bin/www',
           args: [],
-          ignoreFiles: ['README.md', 'node_modules/**', '.DS_Store'],
+          ignoreFiles: ['README.md', 'node_modules/**', '.DS_Store', '.git'],
           watchedExtensions: ['js'],
           watchedFolders: ['app', 'config'],
           debug: true,
@@ -37,9 +44,10 @@ module.exports = function(grunt) {
     },
 
     concurrent: {
-      task: ['nodemon', 'watch'],
+      task: ['nodemon', 'watch', 'jshint'],
       options: {
-        logConcurrentOutput: true
+        logConcurrentOutput: true,
+        limit: 3
       }
     }
   });
@@ -47,6 +55,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-nodemon');
   grunt.loadNpmTasks('grunt-concurrent');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
 
   grunt.option('force', true);
   grunt.registerTask('default', ['concurrent']);
