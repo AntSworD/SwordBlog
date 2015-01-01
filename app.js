@@ -5,6 +5,11 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+var dbUrl = 'mongodb://localhost/swordblog';
+
+var mongoose = require('mongoose');
+mongoose.connect(dbUrl);
+
 var indexs = require('./routes/index');
 var users = require('./routes/users');
 var article = require('./routes/article');
@@ -13,7 +18,7 @@ var aboutme = require('./routes/aboutme');
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, 'app/views'));
 app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
@@ -41,6 +46,9 @@ app.use(function(req, res, next) {
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
+    app.set('showStackError', true);
+    app.use(logger(':method :url :status :remote-addr'));
+    mongoose.set('debug', true);
     app.locals.pretty = true;
     app.use(function(err, req, res, next) {
         res.status(err.status || 500);
