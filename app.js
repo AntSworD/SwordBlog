@@ -4,6 +4,8 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var session = require('express-session');
+var mongoStore = require('connect-mongo')(session);
 
 var dbUrl = 'mongodb://localhost/swordblog';
 
@@ -29,6 +31,15 @@ app.use(bodyParser.urlencoded({
   extended: false
 }));
 app.use(cookieParser());
+app.use(session({
+  secret: 'SwordBlog',
+  resave: false,
+  saveUninitialized: false,
+  store: new mongoStore({
+    url: dbUrl,
+    collection: 'sessions'
+  })
+}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // development print log
