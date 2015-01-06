@@ -9,7 +9,7 @@ module.exports = function(grunt) {
         }
       },
       js: {
-        files: ['routes/*.js', 'app.js', 'public/javascripts/*.js'],
+        files: ['routes/*.js', 'app.js', 'public/javascripts/*.js', 'app/**/*.js'],
         tasks: ['jshint'],
         options: {
           livereload: true
@@ -21,7 +21,7 @@ module.exports = function(grunt) {
       options: {
         jshintrc: '.jshintrc'
       },
-      all: ['routes/*.js', 'app.js', 'public/javascripts/*.js']
+      all: ['gruntfile.js', 'routes/*.js', 'app.js', 'public/javascripts/*.js', 'app/**/*.js']
     },
 
     nodemon: {
