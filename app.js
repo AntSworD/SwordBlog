@@ -41,6 +41,7 @@ app.use(session({
   })
 }));
 app.use(express.static(path.join(__dirname, 'public')));
+app.locals.moment = require('moment');
 
 // development print log
 if ('development' === app.get('env')) {

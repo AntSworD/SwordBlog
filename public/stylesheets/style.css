@@ -1,8 +1,33 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-size: 22px;
+  margin: 0 auto;
+  font-family: 'helvetica neue', tahoma, 'hiragino sans gb', stheiti, 'wenquanyi micro hei', \5FAE\8F6F\96C5\9ED1, \5B8B\4F53, sans-serif !important;
 }
-
 a {
   color: #00B7FF;
+}
+.divider-vertical {
+  display: inline-block;
+  width: 1px;
+  background-color: gray;
+  height: 1rem;
+  margin: 0 5px
+}
+.article-list .article-item .article-title {
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 80%;
+  white-space: nowrap;
+}
+.article-list .article-item>div {
+  vertical-align: middle;
+}
+.article-list .article-item {
+  line-height: 1.5em;
+}
+.article-list .article-item .date {
+  color: #6d6d6d;
+  display: inline-block;
+  font-size: .8em;
 }

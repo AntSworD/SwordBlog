@@ -3,4 +3,12 @@ extends ../layout
 block content
   .container
     .row
-      h3 这是SworD Blog的主页
+      ul.article-list.list-unstyled
+        each article in articles
+          li
+            .article-item
+              div.date
+                | #{moment(article.meta.publishAt).format('YYYY-MM-DD')}
+              div.divider-vertical
+              div.article-title
+                a #{article.title}
