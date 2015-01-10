@@ -5,21 +5,17 @@ block content
     .row
       .article-content
         .article-meta
-          h2.title 第一篇文章
-          .author-name By AntSworD
+          h2.title #{article.title}
+          .author-name By #{article.authorId}
           .statistic
             .publish-date.statistic-item
               span.glyphicon.glyphicon-time
-              | 发布于2015年01月10日
+              | 发布于#{moment(article.meta.publishAt).format('YYYY年MM月DD日')}
             .read-count.statistic-item
               span.glyphicon.glyphicon-stats
-              | 共被阅读了1345次
+              | 共被阅读了#{article.pv}次
         .article-body
-          p 第一段文章
-          p 第二段文章
-          p 第三段文章
-          p 第四段文章
-          p 第五段文章
+          p #{article.content}
       hr
       .article-comment.pannel.pannel-default
           .pannel-heading
