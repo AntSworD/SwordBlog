@@ -31,3 +31,31 @@ a {
   display: inline-block;
   font-size: .8em;
 }
+.article-content .title {
+  text-align: center;
+  font-size: 33px;
+  line-height: 150%;
+  margin: 20px 0;
+}
+.article-content .article-meta .author-name {
+  text-align: center;
+  font-style: italic;
+  color: #4d4d4d;
+}
+.article-content .article-meta .statistic {
+  text-align: center;
+}
+.article-content .article-meta .statistic .statistic-item {
+  display: inline-block;
+  margin: 0 10px;
+  font-size: .8em;
+  line-height: 1.25em;
+  margin-top: 8px;
+  color: #666;
+}
+.article-content p {
+  margin: 0 0 26px;
+  padding: 0;
+  line-height: 150%;
+  position: relative;
+}

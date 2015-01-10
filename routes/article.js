@@ -3,7 +3,9 @@ var router = express.Router();
 
 /* GET article page. */
 router.get('/', function(req, res) {
-  res.end('This is Article Page.');
+  res.render('article', {
+    title: 'SwordBlog',
+  });
 });
 
 /* GET article page with id. */
