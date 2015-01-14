@@ -16,10 +16,17 @@ router.get('/', function(req, res) {
   });
 });
 
+router.get('/new', function(req, res) {
+  res.render('edit-article', {
+    title: 'SwordBlog'
+  });
+});
+
 /* GET article page with id. */
 router.get('/:id', function(req, res) {
   var id = req.params.id;
   res.end('This is Article Page, the article\'s id is ' + id);
 });
+
 
 module.exports = router;
