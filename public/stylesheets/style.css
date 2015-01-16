@@ -73,5 +73,9 @@ a {
 }
 .article-content#content{
   height: 400px;
-  width: 800px;
+  width: 400px;
+}
+#preview{
+  height: 400px;
+  width: 400px;
 }

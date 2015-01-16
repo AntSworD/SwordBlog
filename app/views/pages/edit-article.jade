@@ -10,8 +10,21 @@ block content
             input.form-control(type="text" id="title" placeholder="请输入文章标题")
         .form-group
           label.col-sm-2.control-label(for="content") 内容
-          .col-sm-3
-            textarea.article-content.form-control(id="content" placeholder="请输入文章内容")
+          .col-sm-5
+            textarea.article-content.form-control(id="content" placeholder="请输入文章内容" oninput="this.editor.update()")
+          .col-sm-4
+            #preview
         .form-group
           .col-sm-offset-2.col-sm-10
             button(type="submit").btn.btn-default 发布
+  script(type="text/javascript", src="../libs/markdown.js")
+  script
+    |function Editor(input, preview) {
+    |    this.update = function () {
+    |      preview.innerHTML = markdown.toHTML(input.value);
+    |    };
+    |    input.editor = this;
+    |    this.update();
+    |  }
+    |  var $ = function (id) { return document.getElementById(id); };
+    |  new Editor($("content"), $("preview"));
