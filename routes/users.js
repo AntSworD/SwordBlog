@@ -1,19 +1,14 @@
 var express = require('express');
 var router = express.Router();
+var User = require('../app/controllers/user.js');
 
 /* GET users listing. */
-router.get('/', function(req, res) {
-  res.send('respond with a resource');
-});
+router.get('/', User.showList);
 
 /* GET users sign up page. */
-router.get('/signup', function(req, res) {
-  res.render('signup');
-});
+router.get('/signup', User.showSignup);
 
 /* GET users sign in page. */
-router.get('/signin', function(req, res) {
-  res.render('signin');
-});
+router.get('/signin', User.showSignin);
 
 module.exports = router;
