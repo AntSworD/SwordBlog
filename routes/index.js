@@ -19,4 +19,14 @@ router.get('/', function(req, res) {
   });
 });
 
+/* User Sign in*/
+router.get('/signin', function(req, res) {
+  res.redirect('/users/signin');
+});
+
+/* User Sign up*/
+router.get('/signup', function(req, res) {
+  res.redirect('/users/signup');
+});
+
 module.exports = router;
