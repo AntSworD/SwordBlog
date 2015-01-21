@@ -21,9 +21,7 @@ exports.showList = function(req, res) {
 
 // sign up
 exports.signup = function(req, res) {
-  console.log(req.body.user);
   var _user = req.body.user;
-  console.log(_user);
 
   User.findOne({name: _user.name}, function(err, user) {
     if (err) {
@@ -40,6 +38,37 @@ exports.signup = function(req, res) {
           console.log(err);
         }
         res.redirect('/');
+      });
+    }
+  });
+};
+
+// sign in
+exports.signin = function(req, res) {
+  var _user = req.body.user;
+  var name = _user.name;
+  var pwd = _user.password;
+  console.log(_user);
+
+  User.findOne({name: name}, function(err, user) {
+    if (err) {
+      console.log(err);
+    }
+
+    if (!user) {
+      res.redirect('/signup');
+    } else {
+      user.comparePassword(pwd, function(err, isMatch) {
+        if (err) {
+          console.log(err);
+        }
+
+        if (!isMatch) {
+          return res.redirect('/signin');
+        } else {
+          req.session.user = user;
+          return res.redirect('/');
+        }
       });
     }
   });

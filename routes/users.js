@@ -14,4 +14,7 @@ router.get('/signin', User.showSignin);
 /* POST user sign up */
 router.post('/signup', User.signup);
 
+/* POST user sign in */
+router.post('/signin', User.signin);
+
 module.exports = router;
