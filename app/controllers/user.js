@@ -73,3 +73,21 @@ exports.signin = function(req, res) {
     }
   });
 };
+
+// logout
+exports.logout = function(req, res) {
+  delete req.session.user;
+  res.redirect('/');
+};
+
+// midware for check user
+exports.signinRequired = function(req, res) {
+  var user = req.session.user;
+
+  if (!user) {
+    return res.redirect('/signin');
+  }
+
+  next();
+};
+
