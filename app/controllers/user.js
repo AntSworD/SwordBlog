@@ -23,6 +23,10 @@ exports.showList = function(req, res) {
 exports.signup = function(req, res) {
   var _user = req.body.user;
 
+  if (_user.repeatPassword !== _user.password) {
+    return res.redirect('/signup');
+  }
+
   User.findOne({name: _user.name}, function(err, user) {
     if (err) {
       console.log(err);
