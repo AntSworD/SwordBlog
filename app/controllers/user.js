@@ -3,14 +3,16 @@ var User = require('../models/user.js');
 // show sign up page
 exports.showSignup = function(req, res) {
   res.render('signup', {
-    title: '注册'
+    title: '注册',
+    error: req.flash('error')
   });
 };
 
 // show sign in page
 exports.showSignin = function(req, res) {
   res.render('signin', {
-    title: '登录'
+    title: '登录',
+    error: req.flash('error')
   });
 };
 
