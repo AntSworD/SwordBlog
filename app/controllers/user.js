@@ -4,7 +4,8 @@ var User = require('../models/user.js');
 exports.showSignup = function(req, res) {
   res.render('signup', {
     title: '注册',
-    error: req.flash('error')
+    error: req.flash('error'),
+    success: req.flash('success')
   });
 };
 
@@ -12,7 +13,8 @@ exports.showSignup = function(req, res) {
 exports.showSignin = function(req, res) {
   res.render('signin', {
     title: '登录',
-    error: req.flash('error')
+    error: req.flash('error'),
+    success: req.flash('success')
   });
 };
 
@@ -26,6 +28,7 @@ exports.signup = function(req, res) {
   var _user = req.body.user;
 
   if (_user.repeatPassword !== _user.password) {
+    req.flash('error', '两次密码输入不一致');
     return res.redirect('/signup');
   }
 
@@ -35,6 +38,7 @@ exports.signup = function(req, res) {
     }
 
     if (user) {
+      req.flash('error', '用户名已经存在，请登录');
       return res.redirect('/signin');
     } else {
       user = new User(_user);
@@ -43,6 +47,7 @@ exports.signup = function(req, res) {
         if (err) {
           console.log(err);
         }
+        req.flash('success', '注册成功，请登录');
         res.redirect('/');
       });
     }
