@@ -1,32 +1,14 @@
 var express = require('express');
 var router = express.Router();
+var Index = require('../app/controllers/index');
 
 /* GET home page. */
-router.get('/', function(req, res) {
-  var articles = [];
-  for (var i = 0; i < 10; ++ i) {
-    var article = {
-      meta: {
-        publishAt: new Date(Date.now() - 86400000 * i)
-      },
-      title: 'Article Title ' + (i + 1)
-    };
-    articles.push(article);
-  }
-  res.render('index', {
-    title: 'SwordBlog',
-    articles: articles
-  });
-});
+router.get('/', Index.showHome);
 
 /* User Sign in*/
-router.get('/signin', function(req, res) {
-  res.redirect('/users/signin');
-});
+router.get('/signin', Index.showSignin);
 
 /* User Sign up*/
-router.get('/signup', function(req, res) {
-  res.redirect('/users/signup');
-});
+router.get('/signup', Index.showSignup);
 
 module.exports = router;
