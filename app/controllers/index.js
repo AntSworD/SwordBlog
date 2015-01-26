@@ -12,7 +12,9 @@ exports.showHome = function(req, res) {
   }
   res.render('index', {
     title: 'SwordBlog',
-    articles: articles
+    articles: articles,
+    error: req.flash('error'),
+    success: req.flash('success')
   });
 };
 
