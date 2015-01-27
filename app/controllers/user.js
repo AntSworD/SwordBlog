@@ -67,6 +67,7 @@ exports.signin = function(req, res) {
     }
 
     if (!user) {
+      req.flash('error', '该账号名不存在，请注册');
       res.redirect('/signup');
     } else {
       user.comparePassword(pwd, function(err, isMatch) {
@@ -75,9 +76,11 @@ exports.signin = function(req, res) {
         }
 
         if (!isMatch) {
+          req.flash('error', '账号名与密码不匹配，请重新登录');
           return res.redirect('/signin');
         } else {
           req.session.user = user;
+          req.flash('success', '登录成功');
           return res.redirect('/');
         }
       });
@@ -88,6 +91,7 @@ exports.signin = function(req, res) {
 // logout
 exports.logout = function(req, res) {
   delete req.session.user;
+  req.flash('success', '注销成功');
   res.redirect('/');
 };
 
