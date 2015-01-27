@@ -4,6 +4,18 @@ block content
   .container
     .row
       .col-md-5.col-center
+        - if (error && error.length !== 0)
+          .alert.alert-danger.alert-dismissible(role="alert")
+            button.close(type="button" data-dismiss="alert" aria-label="Close")
+              span(aria-hidden="true") &times;
+            strong Error!
+            | #{ ' ' + error }
+        - if (success && success.length !== 0)
+          .alert.alert-success.alert-dismissible(role="alert")
+            button.close(type="button" data-dismiss="alert" aria-label="Close")
+              span(aria-hidden="true") &times;
+            strong Success!
+            | #{ ' ' + success }
         form(method="POST", action="/users/signin")
           .form-group
             label.control-label.sign-label(for="signinName") 用户名
